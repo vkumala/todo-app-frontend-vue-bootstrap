@@ -1,0 +1,16 @@
+[
+  {
+    "id": 101110010,
+    "subject": "List Group 1",
+    "listId": 123,
+    "components": [],
+    "myDay": false,
+    "reminder": {},
+    "deadline": {},
+    "repeat": false,
+    "attachment": [],
+    "checked":false,
+    "starred": false,
+    "note": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
+  }
+]
