@@ -66,17 +66,17 @@ function deleteElement(index) {
 function setReminder(reminder) {
   switch (reminder) {
     case 'today':
-      item.value['reminder'] = moment();
-      DataService.replaceItem(item.value);
-      break;
+      item.value['reminder'] = moment()
+      DataService.replaceItem(item.value)
+      break
     case 'tomorrow':
-      item.value['reminder'] = moment().add(1, 'days');
-      DataService.replaceItem(item.value);
-      break;
+      item.value['reminder'] = moment().add(1, 'days')
+      DataService.replaceItem(item.value)
+      break
     case 'nextWeek':
-      item.value['reminder'] = moment().add(7, 'days');
-      DataService.replaceItem(item.value);
-      break;
+      item.value['reminder'] = moment().add(7, 'days')
+      DataService.replaceItem(item.value)
+      break
     default:
       reminderModal.show()
   }
@@ -85,17 +85,17 @@ function setReminder(reminder) {
 function setDeadline(deadline) {
   switch (deadline) {
     case 'today':
-      item.value['deadline'] = moment().format("YYYY-MM-DD");
-      DataService.replaceItem(item.value);
-      break;
+      item.value['deadline'] = moment().format('YYYY-MM-DD')
+      DataService.replaceItem(item.value)
+      break
     case 'tomorrow':
-      item.value['deadline'] = moment().add(1, 'days').format("YYYY-MM-DD");
-      DataService.replaceItem(item.value);
-      break;
+      item.value['deadline'] = moment().add(1, 'days').format('YYYY-MM-DD')
+      DataService.replaceItem(item.value)
+      break
     case 'nextWeek':
-      item.value['deadline'] = moment().add(7, 'days').format("YYYY-MM-DD");
-      DataService.replaceItem(item.value);
-      break;
+      item.value['deadline'] = moment().add(7, 'days').format('YYYY-MM-DD')
+      DataService.replaceItem(item.value)
+      break
     default:
       deadlineModal.show()
   }
@@ -126,50 +126,47 @@ async function uploadFile() {
 
 const correctTimestampCreated = computed({
   get() {
-    return moment(item.value.timestamp_created).format('DD.MM.YYYY HH:mm:ss');
+    return moment(item.value.timestamp_created).format('DD.MM.YYYY HH:mm:ss')
   }
 })
 
 const correctTimestampModified = computed({
   get() {
-    return moment(item.value.timestamp_modified).format('DD.MM.YYYY HH:mm:ss');
+    return moment(item.value.timestamp_modified).format('DD.MM.YYYY HH:mm:ss')
   }
 })
 
 const reminderLabel = computed({
   get() {
-    if (item.value['reminder'] == "") {
-      return "Errinerung"
-    }
-    else {
-      return moment(item.value.reminder).format('DD.MM.YYYY HH:mm');
+    if (item.value['reminder'] == '') {
+      return 'Errinerung'
+    } else {
+      return moment(item.value.reminder).format('DD.MM.YYYY HH:mm')
     }
   }
 })
 
 const deadlineLabel = computed({
   get() {
-    if (item.value['deadline'] == "") {
-      return "Fälligkeitsdatum"
-    }
-    else {
-      return moment(item.value.deadline).format('DD.MM.YYYY');
+    if (item.value['deadline'] == '') {
+      return 'Fälligkeitsdatum'
+    } else {
+      return moment(item.value.deadline).format('DD.MM.YYYY')
     }
   }
 })
 const REPEAT_KEY = {
-  'daily': 'täglich',
-  'weekly': 'wöchentlich',
-  'monthly': 'monatlich',
-  'yearly': 'jährlich',
+  daily: 'täglich',
+  weekly: 'wöchentlich',
+  monthly: 'monatlich',
+  yearly: 'jährlich'
 }
 const repeatLabel = computed({
   get() {
-    if (item.value['repeat'] == "") {
-      return "Wiederholung"
-    }
-    else {
-      return REPEAT_KEY[item.value['repeat']];
+    if (item.value['repeat'] == '') {
+      return 'Wiederholung'
+    } else {
+      return REPEAT_KEY[item.value['repeat']]
     }
   }
 })
@@ -182,11 +179,15 @@ const repeatLabel = computed({
       <button type="button" class="btn-close" @click="showOrHideMenu"></button>
     </div>
     <div class="offcanvas-body">
-
       <!-- SUBJECT, CHECK, STAR -->
       <div class="mb-3 d-flex align-item-center">
         <input class="me-2" type="checkbox" v-model="item['checked']" @change="checkItem()" />
-        <input class=" shadow-none form-control" type="text" v-model="item['subject']" @change="checkItem()" />
+        <input
+          class="shadow-none form-control"
+          type="text"
+          v-model="item['subject']"
+          @change="checkItem()"
+        />
         <button v-if="!item.starred" @click="starItem()" type="button" class="btn btn-star">
           <i class="bi bi-star"></i>
         </button>
@@ -198,7 +199,11 @@ const repeatLabel = computed({
       <!-- ELEMENTS -->
       <h6>Schritte:</h6>
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex align-items-center" v-for="(elem, index) in item.elements" :key="index">
+        <li
+          class="list-group-item d-flex align-items-center"
+          v-for="(elem, index) in item.elements"
+          :key="index"
+        >
           <input class="me-3" type="checkbox" v-model="elem['checked']" @change="checkItem()" />
           {{ elem.subject }}
           <button type="button" class="btn btn-outline-danger border-0 ms-auto">
@@ -207,19 +212,28 @@ const repeatLabel = computed({
         </li>
         <li class="list-group-item d-flex align-items-center">
           <i class="bi bi-plus-lg me-2"></i>
-          <input class="border-0 shadow-none form-control" type="text" v-model="newElement" @keyup.enter="addElement"
-            placeholder="hier neue Todo eintippen und Enter drucken" />
+          <input
+            class="border-0 shadow-none form-control"
+            type="text"
+            v-model="newElement"
+            @keyup.enter="addElement"
+            placeholder="hier neue Todo eintippen und Enter drucken"
+          />
         </li>
       </ul>
 
       <!-- TODAY -->
-      <input class="mb-3" type="checkbox" v-model="item['today']" @change="checkItem()" /> Zu meinem Tag
-      hinzufügen
+      <input class="mb-3" type="checkbox" v-model="item['today']" @change="checkItem()" /> Zu meinem
+      Tag hinzufügen
 
       <!-- REMINDER, DEADLINE, REPEAT -->
       <div class="list-group">
-        <li class="list-group-item list-group-item-action d-flex" data-bs-toggle="dropdown" aria-expanded="false"
-          aria-current="true">
+        <li
+          class="list-group-item list-group-item-action d-flex"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          aria-current="true"
+        >
           <i class="bi bi-bell me-2"></i>
           {{ reminderLabel }}
         </li>
@@ -232,8 +246,12 @@ const repeatLabel = computed({
           </li>
           <li class="dropdown-item" @click="setReminder()">Auswählen</li>
         </ul>
-        <li class="list-group-item list-group-item-action" data-bs-toggle="dropdown" aria-expanded="false"
-          aria-current="true">
+        <li
+          class="list-group-item list-group-item-action"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          aria-current="true"
+        >
           <i class="bi bi-calendar4-week me-2"></i>
           {{ deadlineLabel }}
         </li>
@@ -247,8 +265,12 @@ const repeatLabel = computed({
           <li class="dropdown-item" @click="setDeadline()">Auswählen</li>
         </ul>
 
-        <li class="list-group-item list-group-item-action" data-bs-toggle="dropdown" aria-expanded="false"
-          aria-current="true">
+        <li
+          class="list-group-item list-group-item-action"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          aria-current="true"
+        >
           <i class="bi bi-repeat me-2"></i>
 
           {{ repeatLabel }}
@@ -282,7 +304,6 @@ const repeatLabel = computed({
         <label class="form-label">Notiz</label>
         <textarea class="form-control" v-model="item.note" @change="checkItem(item)"> </textarea>
       </div>
-
     </div>
 
     <div class="offcanvas-footer">
@@ -291,8 +312,14 @@ const repeatLabel = computed({
     </div>
   </div>
 
-  <div class="modal fade" id="reminderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div
+    class="modal fade"
+    id="reminderModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -317,8 +344,14 @@ const repeatLabel = computed({
     </div>
   </div>
 
-  <div class="modal fade" id="deadlineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div
+    class="modal fade"
+    id="deadlineModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

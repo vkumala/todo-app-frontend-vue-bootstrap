@@ -39,18 +39,18 @@ class DataService {
 
   addItemToList(listId, newSubject) {
     let newItem = {
-      "subject": "",
-      "elements": [],
-      "today": false,
-      "reminder": "",
-      "deadline": "",
-      "repeat": "",
-      "checked": false,
-      "starred": false,
-      "note": "",
-      "files": []
+      subject: '',
+      elements: [],
+      today: false,
+      reminder: '',
+      deadline: '',
+      repeat: '',
+      checked: false,
+      starred: false,
+      note: '',
+      files: []
     }
-    newItem ['subject'] = newSubject
+    newItem['subject'] = newSubject
     return http.post(`/item/add/${listId}`, newItem)
   }
 
@@ -75,9 +75,9 @@ class DataService {
   getFiles(itemId) {
     return http.get(`/item/files/${itemId}`)
   }
-  
+
   deleteFile(itemId, file) {
-    console.log("file",file)
+    console.log('file', file)
     return http.post(`/item/delete_file/${itemId}`, { filename: file })
   }
 }
