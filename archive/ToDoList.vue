@@ -1,5 +1,5 @@
 <script setup>
-import DataService from '../services/data-service'
+import DataService from '../src/services/data-service'
 import ToDoListItem from './ToDoListItem.vue'
 import ToDoDetails from './ToDoDetails.vue'
 import { ref, onMounted, watch } from 'vue'

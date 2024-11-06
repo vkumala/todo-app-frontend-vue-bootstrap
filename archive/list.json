@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Household",
+    "color": "#000000"
+  },
+  {
+    "name": "Work",
+    "color": "#000000"
+  },
+  {
+    "name": "Shopping",
+    "color": "#000000"
+  },
+  {
+    "name": "Wishlist",
+    "color": "#000000"
+  }
+  {
+    "name": "Party",
+    "color": "#000000"
+  }
+]

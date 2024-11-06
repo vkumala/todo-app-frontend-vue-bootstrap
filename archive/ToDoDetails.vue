@@ -1,5 +1,5 @@
 <script setup>
-import DataService from '../services/data-service'
+import DataService from '../src/services/data-service'
 import { ref, onMounted, computed } from 'vue'
 import { Modal } from 'bootstrap'
 import moment from 'moment'
